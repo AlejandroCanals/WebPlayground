@@ -1,15 +1,14 @@
-from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import CreateView
 from django.views.generic.edit import UpdateView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django import forms
-from .forms import UserCreationFormWithEmail,ProfileForm , EmailForm ,UserNameForm ,PasswordUserForm
+from .forms import UserCreationFormWithEmail,ProfileForm , EmailForm ,UserNameForm 
 from .models import Profile
 # Create your views here.
 
-#Vista para el Inicio de sesión 
+#Vista para la creacion de usuario 
 class SignUpView(CreateView):
     form_class = UserCreationFormWithEmail
     success_url = reverse_lazy('login')
@@ -55,17 +54,12 @@ class EmailUpdate(UpdateView):
         
         return self.request.user
     
-    def get_form(self, form_class=None):
 
-        form = super(EmailUpdate,self).get_form()
-        #Modificar en tiempo real
-        form.fields['email'].widget = forms.EmailInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Email' })
-
-        return form
     
     
 #Vista para cambiar el nombre de usuario
 @method_decorator(login_required, name='dispatch')
+
 class UsernameUpdate(UpdateView):
     form_class = UserNameForm
     success_url = reverse_lazy('profile')
@@ -73,14 +67,7 @@ class UsernameUpdate(UpdateView):
 
     def get_object(self):
         #recuperar el objeto que se va a editar
-        
+    
         return self.request.user
-    
-    def get_form(self, form_class=None):
+       
 
-        form = super(UsernameUpdate,self).get_form()
-        #Modificar en tiempo real
-        form.fields['username'].widget = forms.TextInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Nombre de Usuario' })
-
-        return form
-    

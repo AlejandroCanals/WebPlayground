@@ -1,0 +1,37 @@
+{% extends 'core/base.html' %} {% load static %} {% block title %}Lista de
+Usuarios{% endblock %} {% block content %}
+<main role="main">
+  <div class="container mb-4">
+    <h2 class="mt-4 mb-3">Lista de Usuarios</h2>
+    <div class="row">
+      {% for profile in profiles %}
+      <div class="col-md-4">
+        <div
+          class="card mb-3 d-flex flex-row align-items-center"
+          style="max-width: 400px; border: none"
+        >
+          <img
+            src="{% if profile.avatar %}{{ profile.avatar.url }}{% else %}{% static 'registration/img/no-avatar.jpg' %}{% endif %}"
+            class="card-img-top rounded-circle"
+            alt="Avatar"
+            style="max-width: 100px; height:100px; margin-right: 0px;"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ profile.user.username }}</h5>
+
+            {% if profile.job %}
+            <p class="card-text">{{ profile.job }}</p>
+            {% endif %}
+            <a
+              href="{% url 'profile_detail' username=profile.user.username %}"
+              class="mb-1"
+              >Ver perfil</a
+            >
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</main>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Perfil de {{ profile_detail.user.username }}{% endblock %}
+{% block content %}
+<main role="main">
+    
+  <div class="container mb-4">
+    <div class="row justify-content-center"> <!-- Centrar el contenido horizontalmente -->
+      <div class="col-md-3" > <!-- Columna que ocupa 6 espacios -->
+        <h2 class="mt-4 mb-3 text-center">Perfil de {{ profile_detail.user.username }}</h2> <!-- Centrar el título -->
+        <div class="card mb-4 shadow-sm" > <!-- Establecer un ancho máximo de la tarjeta -->
+          <img src="{% if profile_detail.avatar %}{{ profile_detail.avatar.url }}{% else %}{% static 'registration/img/no-avatar.jpg' %}{% endif %}" class="card-img-top " alt="Avatar" style="max-height: 300px;"> <!-- Establecer una altura máxima para la imagen -->
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ profile_detail.user.username }}</h5>
+            
+            {% if profile_detail.job %}
+              <p class="card-text">{{ profile_detail.job }}</p>
+            {% endif %}
+
+            {% if profile_detail.link %}
+              <a href="{{ profile_detail.link }}" class="btn btn-primary">Visitar enlace</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
