@@ -15,7 +15,10 @@ class ProfileListView(ListView):
     model = Profile
     template_name = 'profiles/profile_list.html'
     context_object_name = 'profiles'
+    paginate_by = 6
 
+    class Meta: 
+        ordering = ['user__username']
 @method_decorator(login_required, name='dispatch')
 class ProfileDetailView(DetailView):
     model = Profile
