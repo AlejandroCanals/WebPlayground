@@ -4,39 +4,39 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Lead(models.Model):
-    LOW = 'low'
-    MEDIUM = 'medium'
-    HIGH = 'high'
+    LOW = 'Baja'
+    MEDIUM = 'Media'
+    HIGH = 'Alta'
 
     CHOICES_PRIORITY = {
-        (LOW , 'Low'),
-        (MEDIUM , 'Medium'),
-        (HIGH , 'High'),
+        (LOW , 'Baja'),
+        (MEDIUM , 'Media'),
+        (HIGH , 'Alta'),
 
     }
     
 
-    NEW = 'new'
-    CONTACTED = 'contacted'
-    WON = 'won'
-    LOST = 'lost'
+    NEW = 'Nuevo'
+    CONTACTED = 'Contactado'
+    WON = 'Ganado'
+    LOST = 'Perdido'
 
     CHOICES_STATUS = {
-        (NEW,'New'),
-        (CONTACTED,'Contaced'),
-        (WON,'Won'),
-        (LOST,'Lost'),
+        (NEW,'Nueva'),
+        (CONTACTED,'Contactado'),
+        (WON,'Ganado'),
+        (LOST,'Perdido'),
 
     }
 
-    name = models.CharField(max_length=255)
-    email = models.EmailField()
-    description = models.TextField(blank=True, null=True)
-    priority = models.CharField(max_length=10, choices=CHOICES_PRIORITY, default=MEDIUM)
-    status = models.CharField(max_length=10, choices=CHOICES_STATUS, default=NEW)
-    created_by = models.ForeignKey(User, related_name='leads', on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    modified_at = models.DateTimeField(auto_now=True)
+    name = models.CharField(max_length=255, verbose_name="Nombre")
+    email = models.EmailField(max_length=100, verbose_name="Email") 
+    description = models.TextField(blank=True, null=True , verbose_name="Descripción")
+    priority = models.CharField(max_length=10, choices=CHOICES_PRIORITY, default=MEDIUM , verbose_name="Prioridad")
+    status = models.CharField(max_length=10, choices=CHOICES_STATUS, default=NEW, verbose_name="Estado")
+    created_by = models.ForeignKey(User, related_name='leads', on_delete=models.CASCADE, verbose_name="Creado por")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Creado a las")
+    modified_at = models.DateTimeField(auto_now=True, verbose_name="Modificado a las ")
 
     def __str__(self):
         return self.name

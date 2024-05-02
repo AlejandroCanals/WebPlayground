@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}
+  {{ lead.title }}
+{% endblock %}
+{% block content %}
+  <main role="main">
+    <div class="container">
+      <div class="row mt-3 card text-center">
+        <div class="col-md-9 mx-auto">
+          <h2 class="section-heading mb-4">{{ lead.name }}</h2>
+          <div class="row lead-details">
+            <div class="col-md-12">
+              <div class="lead-description" style="max-height: 12rem; overflow: hidden; word-wrap: break-word; ">
+                <strong>Descripción</strong><br /> {{ lead.description|safe }}
+              </div>
+            </div>
+
+            <div class="col-md-6 mt-2">
+              <p class="lead-email">
+                <strong>Email</strong><br /> {{ lead.email|safe }}
+              </p>
+              <p class="lead-priority">
+                <strong>Prioridad</strong><br /> {{ lead.priority|safe }}
+              </p>
+              <p class="lead-created-by">
+                <strong>Creado por</strong><br /> {{ lead.created_by|safe }}
+              </p>
+            </div>
+            <div class="col-md-6 mt-2">
+              <p class="lead-created-at">
+                <strong>Creado a las</strong><br /> {{ lead.created_at|date:'d/m/Y H:i:s' }}
+              </p>
+              <p class="lead-modified-at">
+                <strong>Modificado a las</strong><br /> {{ lead.modified_at|date:'d/m/Y H:i:s' }}
+              </p>
+            </div>
+            {% if request.user.is_staff %}
+              <div class="col-md-12">
+                <p>
+                  <a href="{% url 'leads:update' lead.id %}" class="btn btn-primary">Editar</a>
+                </p>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}

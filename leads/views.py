@@ -1,20 +1,22 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
 from .models import Lead
 from .forms import LeadForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
+
 
 
 
 # Create your views here.
 
-@method_decorator(login_required, name='dispatch')
+@method_decorator(staff_member_required, name='dispatch')
 class LeadCreateView(CreateView):
     model = Lead
     form_class = LeadForm
-    template_name = 'lead_form.html'
 
     def form_valid(self,form):
        # Asignar el usuario actual como el creador del lead
@@ -23,4 +25,22 @@ class LeadCreateView(CreateView):
 
     def get_success_url(self):
         # Redirigir a la página de detalle del lead recién creado
-        return reverse_lazy('lead_detail', kwargs={'pk': self.object.pk})
+        return reverse_lazy('leads:leads')
+    
+@method_decorator(staff_member_required, name='dispatch')
+class LeadDetailView(DetailView):
+    model = Lead
+
+@method_decorator(staff_member_required, name='dispatch')
+class LeadListView(ListView):
+    model = Lead
+
+
+@method_decorator(staff_member_required, name='dispatch')
+class LeadUpdateView(UpdateView):
+    model = Lead
+    form_class = LeadForm
+    template_name_suffix = "_update_form"
+
+    def get_success_url(self):
+        return reverse_lazy('leads:update', args=[self.object.id]) + '?ok'

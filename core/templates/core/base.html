@@ -31,6 +31,9 @@
                 <a class="nav-link" href="{% url 'pages:pages' %}">Páginas</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="{% url 'leads:leads' %}">Leads</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="{% url 'profiles' %}">Usuarios</a>
               </li>
             </ul>
@@ -44,7 +47,7 @@
               </li>
               {% else %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'messenger:list' %}">Agregar Lead</a>
+                <a class="nav-link" href="{% url 'leads:create' %}">Crear Lead</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'messenger:list' %}">Mensajes</a>

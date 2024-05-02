@@ -19,6 +19,7 @@ from pages.urls import pages_patterns
 from django.conf import settings
 from .settings import MEDIA_ROOT,MEDIA_URL
 from messenger.urls import messenger_patterns
+from leads.urls import lead_patterns
 
 
 urlpatterns = [  
@@ -32,6 +33,7 @@ urlpatterns = [
     path('accounts/',include('registration.urls')),
     # Paths de Messenger
     path('messenger/',include(messenger_patterns)),
+    path('leads/',include(lead_patterns)),
 
   
 ]
