@@ -27,16 +27,20 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'home' %}">Inicio</a>
               </li>
-              <li class="nav-item">
+              {% if request.user.is_authenticated %}
+        <!--  <li class="nav-item">
                 <a class="nav-link" href="{% url 'pages:pages' %}">Páginas</a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'leads:leads' %}">Leads</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'profiles' %}">Usuarios</a>
               </li>
+              {% endif %}
             </ul>
+   
+
             <ul class="navbar-nav">
               {% if not request.user.is_authenticated %}
               <li class="nav-item">

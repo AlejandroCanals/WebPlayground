@@ -19,6 +19,15 @@ class ProfileListView(ListView):
 
     class Meta: 
         ordering = ['user__username']
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search_query = self.request.GET.get('search')  # Obtener el valor del campo de búsqueda
+        if search_query:
+            queryset = queryset.filter(user__username__icontains=search_query)  # Filtrar leads por el nombre que contiene la búsqueda
+        return queryset
+    
+    
 @method_decorator(login_required, name='dispatch')
 class ProfileDetailView(DetailView):
     model = Profile

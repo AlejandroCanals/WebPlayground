@@ -34,6 +34,8 @@
               <p class="lead-modified-at">
                 <strong>Modificado a las</strong><br /> {{ lead.modified_at|date:'d/m/Y H:i:s' }}
               </p>
+              <p class="lead-modifed-by"><strong>Modificado por</strong><br/> {{ lead.modified_by }}</p>
+
             </div>
             {% if request.user.is_staff %}
               <div class="col-md-12">

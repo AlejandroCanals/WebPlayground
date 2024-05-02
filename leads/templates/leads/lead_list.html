@@ -6,10 +6,19 @@
 {% block content %}
 <main role="main">
   <div class="container mb-4">
+    <!-- Formulario de búsqueda -->
+    <form method="GET" class="mb-3">
+      <div class="form-group">
+        <label for="search">Buscar por nombre:</label>
+        <input type="text" name="search" id="search" class="form-control" placeholder="Ingrese el nombre del lead">
+      </div>
+      <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+
     <div class="row">
       {% for lead in lead_list %}
         <div class="col-md-4">
-          <div class="card mt-3">
+          <div class="card mt-3" style="height: 250px;">
             <div class="card-body">
               <h3 class="card-title">{{ lead.name }}</h3>
               <p class="card-text">{{ lead.description|striptags|safe|truncatechars:50 }}</p>
@@ -26,6 +35,7 @@
               <p><a href="{% url 'leads:lead' lead.id lead.name|slugify %}">Leer más</a>
               {% if request.user.is_staff %}
                 | <a href="{% url 'leads:update' lead.id %}">Editar</a>
+                | <a href="{% url 'leads:delete' lead.id %}">Eliminar</a>
               {% endif %}
             </div>
           </div>
