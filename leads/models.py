@@ -18,13 +18,13 @@ class Lead(models.Model):
 
     NEW = 'Nuevo'
     CONTACTED = 'Contactado'
-    WON = 'Ganado'
+    WON = 'Completado'
     LOST = 'Perdido'
 
     CHOICES_STATUS = {
         (NEW, 'Nueva'),
         (CONTACTED, 'Contactado'),
-        (WON, 'Ganado'),
+        (WON, 'Completado'),
         (LOST, 'Perdido'),
 
     }

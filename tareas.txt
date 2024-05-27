@@ -1,0 +1,4 @@
+1- Agregar barra de busqueda para filtrar leads X
+2- Agregar barra de busqueda para filtrar usuarios X
+3- Crear pagina de Inicio de resumen de leads
+5- Hacer grupos para los usuarios 

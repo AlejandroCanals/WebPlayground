@@ -28,7 +28,7 @@ class ThreadList(TemplateView):
 class ThreadDetail(DetailView):
 
     model = Thread
-
+    template_name = "messenger/thread_detail.html"
     def get_object(self):
         obj = super(ThreadDetail, self).get_object()
         if self.request.user not in obj.users.all():

@@ -35,7 +35,6 @@ class LeadDetailView(DetailView):
 class LeadListView(ListView):
     model = Lead
 
-
     def get_queryset(self):
         queryset = super().get_queryset()
         search_query = self.request.GET.get('search')  # Obtener el valor del campo de búsqueda
