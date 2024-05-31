@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'profiles',
     'leads',
+    'qr_generator',
+    'calculadora',
 ]
 
 MIDDLEWARE = [

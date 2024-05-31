@@ -20,6 +20,8 @@ from django.conf import settings
 from .settings import MEDIA_ROOT,MEDIA_URL
 from messenger.urls import messenger_patterns
 from leads.urls import lead_patterns
+from qr_generator.urls import qr_generator_patterns
+from calculadora.urls import calculador_patterns
 
 
 urlpatterns = [  
@@ -34,6 +36,11 @@ urlpatterns = [
     # Paths de Messenger
     path('messenger/',include(messenger_patterns)),
     path('leads/',include(lead_patterns)),
+    # QR
+    path('qr_generator/', include(qr_generator_patterns)),
+    #Calculadora
+    path('calculadora/', include(calculador_patterns))
+
 
   
 ]

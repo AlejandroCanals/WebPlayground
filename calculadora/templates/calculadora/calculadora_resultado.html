@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Resultado Calculado{% endblock %}
+{% block content %}
+<main role="main">
+    <div class="container mt-5">
+        <h1>Calculadora</h1>
+        <div class="alert alert-success" role="alert">
+            <strong>El resultado es:</strong> {{ num1 }} {{ opcion }} {{ num2 }} = {{ resultado }}
+            <br>
+            <a href="{% url 'calculadora:calculadora' %}">Hacer otra operacion</a>
+        </div>
+    </div>
+</main>
+{% endblock %}

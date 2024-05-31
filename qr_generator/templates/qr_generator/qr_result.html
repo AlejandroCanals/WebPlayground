@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Generador Qr{% endblock %}
+{% block content %}
+<main role="main">
+  <div class="container">
+    <div class="row mt-3 mb-3">
+      <div class="col-md-7 mx-auto">
+        <div class="text-center">
+            <h1>Resultado del Generador de QR</h1>
+            <img src="data:image/png;base64,{{ qr_image }}" alt="Código QR generado">
+            <p><a href="{% url 'qr_generator:qr_generate' %}">Generar otro QR</a></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
